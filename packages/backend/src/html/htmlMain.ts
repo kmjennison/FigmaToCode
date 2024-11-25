@@ -21,6 +21,7 @@ export const htmlMain = (
   settings: PluginSettings,
   isPreview: boolean = false
 ): string => {
+  console.log('===== htmlMain =====', sceneNode, settings);
   showLayerName = settings.layerName;
   isPreviewGlobal = isPreview;
   previousExecutionCache = [];
@@ -144,6 +145,11 @@ const htmlFrame = (
     isJsx
   );
 
+  // WIP(kmjennison): skip autolayout and use absolute positioning
+  // // node.layoutMode === "NONE" && node.children.length > 1
+  // // children needs to be absolute
+  // return htmlContainer(node, childrenStr, [], isJsx);
+
   if (node.layoutMode !== "NONE") {
     const rowColumn = htmlAutoLayoutProps(node, node, isJsx);
     return htmlContainer(node, childrenStr, rowColumn, isJsx);
@@ -157,6 +163,7 @@ const htmlFrame = (
       return htmlContainer(node, childrenStr, rowColumn, isJsx);
     }
 
+    // WIP(kmjennison)
     // node.layoutMode === "NONE" && node.children.length > 1
     // children needs to be absolute
     return htmlContainer(node, childrenStr, [], isJsx);
@@ -201,6 +208,9 @@ export const htmlContainer = (
   additionalStyles: string[] = [],
   isJsx: boolean
 ): string => {
+  // WIP(kmjennison): remove all wrappers
+  // return children
+
   // ignore the view when size is zero or less
   // while technically it shouldn't get less than 0, due to rounding errors,
   // it can get to values like: -0.000004196293048153166

@@ -16,6 +16,9 @@ type position =
 export const commonPosition = (
   node: SceneNode & DimensionAndPositionMixin
 ): position => {
+  // WIP(kmjennison): force absolute positioning
+  // return "Absolute"
+  
   // if node is same size as height, position is not necessary
 
   // detect if Frame's width is same as Child when Frame has Padding.
